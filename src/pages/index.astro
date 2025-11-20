@@ -1,71 +1,61 @@
 ---
-import { getEntry } from "astro:content";
-import Alert from "../components/Alert.astro";
-import Guide from "../components/Guide.astro";
 import Layout from "../components/Layout.astro";
-import TableRow from "../components/TableRow.astro";
-import { supabase } from "../utils/database";
-
-export const prerender = false;
-
-let frameworks;
-let frameworksError;
-
-// Fetch frameworks data from Supabase if connection is set up
-if (supabase) {
-  const { data, error } = await supabase
-    .from("frameworks")
-    .select("*")
-    .order("likes", { ascending: false });
-  frameworks = data;
-  frameworksError = error;
-}
-
-// Get guides
-const connectGuide = await getEntry("guides", "guide-connect-supabase");
-const fetchDataGuide = await getEntry("guides", "guide-fetch-data");
 ---
 
-<Layout title="Web Frameworks">
-  {
-    supabase ? (
-      frameworks ? (
-        <>
-          <h1 class="mb-8 text-4xl font-bold">
-            Vote for Your Favorite Web Framework
-          </h1>
-          <table class="w-full text-left">
-            <thead>
-              <tr class="font-mono text-base border-t border-b">
-                <th>Name</th>
-                <th>Logo</th>
-                <th>Likes</th>
-              </tr>
-            </thead>
-            <tbody>
-              {frameworks?.map((framework) => (
-                <TableRow framework={framework} />
-              ))}
-            </tbody>
-          </table>
-        </>
-      ) : (
-        <>
-          {frameworksError && (
-            <Alert
-              title={frameworksError.code}
-              text={frameworksError.message}
-              variant="error"
-            />
-          )}
-          {fetchDataGuide && <Guide guide={fetchDataGuide} />}
-        </>
-      )
-    ) : (
-      <>
-        <Alert title="Finish setting up your new site" text="Before your website is ready, you must complete the steps from the guide below to create, populate, and connect your Supabase database."/>
-        {connectGuide && <Guide guide={connectGuide} />}
-      </>
-    )
-  }
+<Layout title="Sravi Enterprises">
+  <!-- Hero Section -->
+  <section class="py-12 text-center">
+    <h1 class="text-4xl font-bold mb-4">Premium Distribution Services</h1>
+    <p class="text-xl mb-8">Quality products delivered to your doorstep</p>
+    <button class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">
+      Explore Our Products
+    </button>
+  </section>
+
+  <!-- Product Categories -->
+  <section class="py-8">
+    <h2 class="text-3xl font-bold mb-8 text-center">Our Product Categories</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="border rounded-lg p-6 text-center">
+        <h3 class="text-xl font-bold mb-2">Electronics</h3>
+        <p>Wide range of electronic components and devices</p>
+      </div>
+      <div class="border rounded-lg p-6 text-center">
+        <h3 class="text-xl font-bold mb-2">Industrial Supplies</h3>
+        <p>Essential supplies for your business needs</p>
+      </div>
+      <div class="border rounded-lg p-6 text-center">
+        <h3 class="text-xl font-bold mb-2">Consumer Goods</h3>
+        <p>Quality products for everyday use</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="py-8 bg-neutral-700 rounded-lg mt-8">
+    <h2 class="text-3xl font-bold mb-4 text-center">About Our Company</h2>
+    <p class="text-center max-w-2xl mx-auto">
+      We are a leading distribution company providing quality products and services to businesses across the region. 
+      With years of experience and a commitment to excellence, we ensure timely delivery and customer satisfaction.
+    </p>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="py-8">
+    <h2 class="text-3xl font-bold mb-4 text-center">Contact Us</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+      <div>
+        <h3 class="text-xl font-bold">Address</h3>
+        <p>123 Business Street, City, Country</p>
+      </div>
+      <div>
+        <h3 class="text-xl font-bold">Phone</h3>
+        <p>+1 (555) 123-4567</p>
+      </div>
+      <div>
+        <h3 class="text-xl font-bold">Email</h3>
+        <p>info@yourcompany.com</p>
+      </div>
+    </div>
+  </section>
 </Layout>
