@@ -1,15 +1,27 @@
 ---
 import Layout from "../components/Layout.astro";
+import Slider from "../components/Slider.astro";
 ---
 
 <Layout title="Sravi Enterprises">
-  <!-- Hero Section -->
-  <section class="py-12 text-center">
-    <h1 class="text-4xl font-bold mb-4">Premium Distribution Services</h1>
-    <p class="text-xl mb-8">Quality products delivered to your doorstep</p>
-    <button class="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">
-      Explore Our Products
-    </button>
+  <!-- Main Content Section -->
+  <section class="py-12 bg-green-600">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Left Column - Content -->
+        <div class="flex flex-col justify-center">
+          <h1 class="text-4xl font-bold mb-4 text-white">Sravi Enterprises</h1>
+          <p class="text-xl mb-8 text-green-100">Authorised Sastry Balm Distributor for Tamil Nadu</p>
+          <button class="bg-white hover:bg-green-50 text-green-600 font-bold py-2 px-4 rounded">
+            Explore Our Products
+          </button>
+        </div>
+        <!-- Right Column - Slider -->
+        <div>
+          <Slider />
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- Product Categories -->
